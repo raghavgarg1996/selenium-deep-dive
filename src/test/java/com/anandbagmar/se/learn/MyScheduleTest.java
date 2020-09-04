@@ -1,7 +1,10 @@
 package com.anandbagmar.se.learn;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,6 +16,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
@@ -24,13 +29,13 @@ public class MyScheduleTest {
     private static final By viewScheduleLocator = By.xpath("//div/a[@href='/selenium-conf-2020/schedule']");
     private static final By myScheduleCountLocator = By.id("my-schedule-count");
     private static final By addSessionToMyScheduleLocator = By.cssSelector("a[data-tooltip='Add to My Schedule']");
+    private static final String screenshotsDir = System.getenv("screenshotsDir");
 
     @BeforeMethod
     private WebDriver createDriver(Method method) {
         String methodName = method.getName();
         System.out.println("CreateDriver for test: " + methodName);
         String envBrowser = System.getenv("browser");
-        System.out.println("Browser env: " + envBrowser);
         String browser = (null == envBrowser) ? "chrome" : envBrowser;
         System.out.println("Running test with browser - " + browser);
         switch (browser) {
@@ -66,16 +71,36 @@ public class MyScheduleTest {
 
         driver.findElement(upcomingLocator).click();
         driver.findElement(conferenceNameLocator).click();
+
+        takeScreenshot("conference");
+
         driver.findElement(viewScheduleLocator).click();
+
+        takeScreenshot("view schedule");
 
         String initialCount = driver.findElement(myScheduleCountLocator).getText();
         System.out.println("Initial count = " + initialCount);
 
         driver.findElement(addSessionToMyScheduleLocator).click();
+        takeScreenshot("add session to My Schedule");
+
         driver.findElement(By.id("cancel_login_model")).click();
+        takeScreenshot("cancel login");
 
         String finalCount = driver.findElement(myScheduleCountLocator).getText();
         System.out.println("Final count = " + finalCount);
+    }
+
+    private void takeScreenshot(String screenshotName) {
+        File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String destinationScreenshotFileName = screenshotsDir + "/" + screenshotName + ".png";
+        System.out.println("Saving screenshot: " + destinationScreenshotFileName);
+        try {
+            FileUtils.copyFile(screenshotAs, new File(destinationScreenshotFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     private String getPathForChromeDriverFromMachine() {

@@ -24,3 +24,7 @@ or, you can run the testng tests from your IDE
 * Add the 1st session to My Schedule (that is NOT already added)
 * Do not login to sync the schedule to other devices
 * Verify count has increased in “My Schedule”
+
+This test assumes:
+* The test runs on Chrome browser
+* chromedriver is available in path ~/.m2/repository/webdriver/chromedriver/mac64/85.0.4183.87/chromedriver

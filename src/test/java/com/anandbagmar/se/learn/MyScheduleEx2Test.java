@@ -66,7 +66,7 @@ public class MyScheduleEx2Test {
         }
     }
 
-    @Test
+//    @Test
     public void addSessionToMySchedule() {
         driver.get(url);
 

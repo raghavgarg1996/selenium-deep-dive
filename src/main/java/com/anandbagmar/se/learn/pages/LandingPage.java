@@ -3,6 +3,8 @@ package com.anandbagmar.se.learn.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
+
 public class LandingPage extends BasePage {
     private static final By upcomingLocator = By.xpath("//a[text()=\"Upcoming\"]");
     private static final String CONFNAME = "CONFNAME";
@@ -21,6 +23,7 @@ public class LandingPage extends BasePage {
     }
 
     public ConferenceLandingPage selectConference(String conferenceName) {
+        getTestExecutionContext().addState("conferenceName", conferenceName);
         WebElement confElement = driver.findElement(getConfNameLocatorFor(conferenceName));
         scrollElementIntoView(confElement);
         driver.findElement(getConfNameLocatorFor(conferenceName)).click();

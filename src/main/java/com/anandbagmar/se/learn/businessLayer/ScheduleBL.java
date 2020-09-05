@@ -23,7 +23,7 @@ public class ScheduleBL {
                                  .sessionsInMySchedule();
         System.out.println("Final count = " + finalCount);
 
-        assertEquals(finalCount, initialCount + expectedChangeInSessionCount, "Session not added to my schedule");
+        assertEquals(finalCount, initialCount + expectedChangeInSessionCount, errorMessage);
     }
 
     public ScheduleBL shouldNotBeAbleToAddSessionToMySchedule() {

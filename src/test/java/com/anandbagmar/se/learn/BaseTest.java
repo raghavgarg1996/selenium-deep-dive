@@ -1,6 +1,5 @@
 package com.anandbagmar.se.learn;
 
-import com.anandbagmar.se.learn.pages.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +12,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.lang.reflect.Method;
 
+import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
 import static com.anandbagmar.se.learn.SessionContext.addContext;
 import static com.anandbagmar.se.learn.SessionContext.getContext;
 
@@ -64,6 +64,7 @@ public abstract class BaseTest {
         TestExecutionContext testExecutionContext = getContext(threadId);
         WebDriver driver = testExecutionContext.getInnerDriver();
         if (null != driver) {
+            takeScreenshot("Before Closing Browser");
             try {
                 driver.close();
                 driver.quit();

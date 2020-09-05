@@ -12,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
-public class MyScheduleTest {
+public class MyScheduleEx2Test {
     WebDriver driver = null;
     private static final String url = "https://dev.confengine.com";
     private static final By upcomingLocator = By.xpath("//a[text()=\"Upcoming\"]");
@@ -78,7 +79,7 @@ public class MyScheduleTest {
 
         takeScreenshot("view schedule");
 
-        String initialCount = driver.findElement(myScheduleCountLocator).getText();
+        int initialCount = Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
         System.out.println("Initial count = " + initialCount);
 
         driver.findElement(addSessionToMyScheduleLocator).click();
@@ -87,8 +88,10 @@ public class MyScheduleTest {
         driver.findElement(By.id("cancel_login_model")).click();
         takeScreenshot("cancel login");
 
-        String finalCount = driver.findElement(myScheduleCountLocator).getText();
+        int finalCount = Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
         System.out.println("Final count = " + finalCount);
+
+        Assert.assertEquals(finalCount, initialCount+1);
     }
 
     private void takeScreenshot(String screenshotName) {

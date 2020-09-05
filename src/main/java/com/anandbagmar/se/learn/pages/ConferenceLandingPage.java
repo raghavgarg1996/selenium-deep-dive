@@ -6,14 +6,10 @@ import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
 
 public class ConferenceLandingPage extends BasePage {
     private static final String CONFNAME = "CONFNAME";
-    private static final String viewScheduleLocator = "//div/a[@href='/" + CONFNAME + "/schedule']";
+    private static final String viewScheduleLocator = "//div/a[contains(@href,'/schedule')]";
 
     public ListViewSchedulePage viewSchedule() {
-        String conferenceName = getTestExecutionContext().getState("conferenceName");
-        conferenceName = conferenceName.toLowerCase().replaceAll(" ", "-");
-        System.out.println(conferenceName);
-        System.out.println(getConfNameLocatorFor(conferenceName));
-        driver.findElement(getConfNameLocatorFor(conferenceName)).click();
+        driver.findElement(By.xpath(viewScheduleLocator)).click();
         takeScreenshot("View Schedule");
         return new ListViewSchedulePage();
     }

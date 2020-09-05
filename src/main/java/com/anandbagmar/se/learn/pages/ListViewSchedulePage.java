@@ -2,15 +2,19 @@ package com.anandbagmar.se.learn.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class ListViewSchedulePage extends BasePage {
     private static final By myScheduleCountLocator = By.id("my-schedule-count");
     private static final By addSessionToMyScheduleLocator = By.cssSelector("a[data-tooltip='Add to My Schedule']");
     private static final By cancelLoginModelLocator = By.id("cancel_login_model");
+
+    public ListViewSchedulePage() {
+        explicitlyWaitFor(visibilityOf(driver.findElement(myScheduleCountLocator)), 5);
+    }
 
     public int sessionsInMySchedule() {
         return Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());

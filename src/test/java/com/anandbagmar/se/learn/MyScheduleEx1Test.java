@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MyScheduleEx1Test {
@@ -35,6 +36,9 @@ public class MyScheduleEx1Test {
 
         String finalCount = driver.findElement(By.id("my-schedule-count")).getText();
         System.out.println("Final count = " + finalCount);
+
+        Assert.assertEquals(finalCount, initialCount+1);
+
         driver.quit();
     }
 }

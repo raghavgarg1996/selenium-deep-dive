@@ -27,14 +27,14 @@ public class MyScheduleEx1Test {
 
         driver.findElement(By.xpath("//div/a[@href='/selenium-conf-2020/schedule']")).click();
 
-        String initialCount = driver.findElement(By.id("my-schedule-count")).getText();
+        int initialCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Initial count = " + initialCount);
 
         driver.findElement(By.cssSelector("a[data-tooltip='Add to My Schedule']")).click();
 
         driver.findElement(By.id("cancel_login_model")).click();
 
-        String finalCount = driver.findElement(By.id("my-schedule-count")).getText();
+        int finalCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Final count = " + finalCount);
 
         Assert.assertEquals(finalCount, initialCount+1);

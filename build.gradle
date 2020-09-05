@@ -52,6 +52,10 @@ dependencies {
 project.ext.logDir = "${rootDir}/reports"
 
 test {
+    doFirst {
+        environment "reportsDir", "${project.logDir}"
+        environment "screenshotsDir", "${project.logDir}/screenshots"
+    }
     useTestNG() {
         options {
             parallel = 'methods'
@@ -86,6 +90,7 @@ clean.doFirst {
 
 clean.doLast {
     mkdir "${rootDir}/reports"
+    mkdir "${rootDir}/reports/screenshots"
     println "Created reports directory"
 }
 

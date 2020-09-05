@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
-public class MyScheduleTest {
+public class MyScheduleEx1Test {
     @Test
     public void addSessionToMySchedule() {
         String chromeDriverPath = System.getenv("HOME") + "/.m2/repository/webdriver/chromedriver/mac64/85.0.4183.87/chromedriver";

@@ -1,10 +1,13 @@
 package com.anandbagmar.se.learn.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class LandingPage extends BasePage {
     private static final By upcomingLocator = By.xpath("//a[text()=\"Upcoming\"]");
-    private static final By conferenceNameLocator = By.cssSelector("img[title='Selenium Conf 2020']");
+    private static final String CONFNAME = "CONFNAME";
+    private static final String conferenceNameLocator = "img[title='" + CONFNAME + "']";
+    private static final By pastLocator = By.xpath("//a[text()=\"Past\"]");
 
     public LandingPage() {
         getDriver().get(baseUrl);
@@ -18,9 +21,19 @@ public class LandingPage extends BasePage {
     }
 
     public ConferenceLandingPage selectConference(String conferenceName) {
-        driver.findElement(conferenceNameLocator).click();
+        WebElement confElement = driver.findElement(getConfNameLocatorFor(conferenceName));
+        scrollElementIntoView(confElement);
+        driver.findElement(getConfNameLocatorFor(conferenceName)).click();
         takeScreenshot(String.format("Selected conference - '%s'", conferenceName));
         return new ConferenceLandingPage();
     }
 
+    private By getConfNameLocatorFor(String conferenceName) {
+        return By.cssSelector(conferenceNameLocator.replace("CONFNAME", conferenceName));
+    }
+
+    public LandingPage selectFromPastConferences() {
+        driver.findElement(pastLocator).click();
+        return this;
+    }
 }

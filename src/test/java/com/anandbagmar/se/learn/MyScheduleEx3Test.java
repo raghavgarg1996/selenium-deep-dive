@@ -12,4 +12,12 @@ public class MyScheduleEx3Test extends BaseTest {
                 .viewSchedule()
                 .addSessionToMySchedule();
     }
+
+    @Test
+    public void shouldNotBeAbleToAddSessionToMyScheduleForPastConference() {
+        new ConferenceBL()
+                .selectConferenceFromPast("Appium Conf 2019")
+                .viewSchedule()
+                .shouldNotBeAbleToAddSessionToMySchedule();
+    }
 }

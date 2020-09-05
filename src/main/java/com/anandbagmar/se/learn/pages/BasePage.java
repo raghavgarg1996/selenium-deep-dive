@@ -2,9 +2,7 @@ package com.anandbagmar.se.learn.pages;
 
 import com.anandbagmar.se.learn.TestExecutionContext;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +11,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 import static com.anandbagmar.se.learn.SessionContext.getContext;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public abstract class BasePage {
     protected static final String baseUrl = "https://dev.confengine.com";
@@ -61,5 +60,12 @@ public abstract class BasePage {
     protected void explicitlyWaitFor(ExpectedCondition isTrue, int waitForSeconds) {
         long duration = Duration.ofSeconds(waitForSeconds).getSeconds();
         new WebDriverWait(driver, duration).until(isTrue);
+    }
+
+    protected void scrollElementIntoView(WebElement webElement) {
+        //This will scroll the page Horizontally till the element is found
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(false);", webElement);
+        explicitlyWaitFor(elementToBeClickable(webElement), 3);
     }
 }

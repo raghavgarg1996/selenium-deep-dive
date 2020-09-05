@@ -16,4 +16,11 @@ public class ConferenceBL {
         new ConferenceLandingPage().viewSchedule();
         return new ScheduleBL();
     }
+
+    public ConferenceBL selectConferenceFromPast(String conferenceName) {
+        new LandingPage()
+                .selectFromPastConferences()
+                .selectConference(conferenceName);
+        return this;
+    }
 }

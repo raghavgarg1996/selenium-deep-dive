@@ -53,6 +53,10 @@ dependencies {
 project.ext.logDir = "${rootDir}/reports"
 
 test {
+    doFirst {
+        environment "reportsDir", "${project.logDir}"
+        environment "screenshotsDir", "${project.logDir}/screenshots"
+    }
     useTestNG() {
         options {
             parallel = 'methods'

@@ -8,13 +8,11 @@ import java.util.Map;
 public class TestExecutionContext {
     private final WebDriver innerDriver;
     private final String testName;
-    private int screenshotCounter;
     private Map<String, String> testState;
 
     public TestExecutionContext(String testName, WebDriver innerDriver) {
         this.testName = testName;
         this.innerDriver = innerDriver;
-        this.screenshotCounter = 0;
         this.testState = new HashMap<>();
     }
 
@@ -27,7 +25,7 @@ public class TestExecutionContext {
     }
 
     public int getScreenshotCounter() {
-        return ++screenshotCounter;
+        return SessionContext.getScreenshotCounter();
     }
 
     public void addState(String name, String value) {

@@ -23,7 +23,6 @@ import java.lang.reflect.Method;
 import java.time.Duration;
 
 public class MyScheduleEx2Test {
-    WebDriver driver = null;
     private static final String url = "https://dev.confengine.com";
     private static final By upcomingLocator = By.xpath("//a[text()=\"Upcoming\"]");
     private static final By conferenceNameLocator = By.cssSelector("img[title='Selenium Conf 2020']");
@@ -31,6 +30,7 @@ public class MyScheduleEx2Test {
     private static final By myScheduleCountLocator = By.id("my-schedule-count");
     private static final By addSessionToMyScheduleLocator = By.cssSelector("a[data-tooltip='Add to My Schedule']");
     private static final String screenshotsDir = System.getenv("screenshotsDir");
+    WebDriver driver = null;
 
     @BeforeMethod
     private WebDriver createDriver(Method method) {
@@ -91,7 +91,7 @@ public class MyScheduleEx2Test {
         int finalCount = Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
         System.out.println("Final count = " + finalCount);
 
-        Assert.assertEquals(finalCount, initialCount+1);
+        Assert.assertEquals(finalCount, initialCount + 1);
     }
 
     private void takeScreenshot(String screenshotName) {

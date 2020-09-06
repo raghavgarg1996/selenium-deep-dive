@@ -37,7 +37,7 @@ public class MyScheduleEx1Test {
         int finalCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Final count = " + finalCount);
 
-        Assert.assertEquals(finalCount, initialCount+1);
+        Assert.assertEquals(finalCount, initialCount + 1);
 
         driver.quit();
     }

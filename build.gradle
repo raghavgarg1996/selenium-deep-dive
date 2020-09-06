@@ -2,7 +2,7 @@ buildscript {
     ext {
         gradleVersionProperty = '6.5'
         masterThoughtVersion = '5.+'
-        testNGVersion = '6+'
+        testNGVersion = '+'
         seleniumVersion = '3+'
         webdriverManagerVersion = '3.+'
         jsonSimpleVersion = '1.+'

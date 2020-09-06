@@ -2,7 +2,6 @@ package com.anandbagmar.se.learn.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;

@@ -8,7 +8,7 @@ import java.util.Map;
 public class TestExecutionContext {
     private final WebDriver innerDriver;
     private final String testName;
-    private Map<String, String> testState;
+    private final Map<String, String> testState;
 
     public TestExecutionContext(String testName, WebDriver innerDriver) {
         this.testName = testName;

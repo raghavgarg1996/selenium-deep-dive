@@ -5,10 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class MyScheduleEx1Test {
-//    @Test
+    //    @Test
     public void addSessionToMySchedule() {
         String chromeDriverPath = System.getenv("HOME") + "/.m2/repository/webdriver/chromedriver/mac64/85.0.4183.87/chromedriver";
         System.out.println("ChromeDriver path: " + chromeDriverPath);
@@ -37,7 +36,7 @@ public class MyScheduleEx1Test {
         int finalCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Final count = " + finalCount);
 
-        Assert.assertEquals(finalCount, initialCount+1);
+        Assert.assertEquals(finalCount, initialCount + 1);
 
         driver.quit();
     }

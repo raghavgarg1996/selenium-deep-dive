@@ -14,7 +14,7 @@ public class MyScheduleEx4Test extends BaseTest {
         };
     }
 
-    @Test (dataProvider = "upcomingConferences")
+    @Test(dataProvider = "upcomingConferences")
     public void addSessionToMySchedule(String conferenceName) {
         new ConferenceBL()
                 .selectUpcomingConference(conferenceName)
@@ -30,7 +30,7 @@ public class MyScheduleEx4Test extends BaseTest {
         };
     }
 
-    @Test (dataProvider = "pastConferences")
+    @Test(dataProvider = "pastConferences")
     public void shouldNotBeAbleToAddSessionToMyScheduleForPastConference(String conferenceName) {
         new ConferenceBL()
                 .selectConferenceFromPast(conferenceName)

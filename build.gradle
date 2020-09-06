@@ -4,6 +4,7 @@ buildscript {
         testNGVersion = '+'
         seleniumVersion = '3+'
         webdriverManagerVersion = '+'
+        owaspJavaHtmlSanitizerVersion = '+'
         gsonVersion = '+'
     }
 }
@@ -46,6 +47,7 @@ sourceSets {
 dependencies {
     implementation 'org.testng:testng:' + testNGVersion
     implementation 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
+    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:' + owaspJavaHtmlSanitizerVersion
     implementation 'io.github.bonigarcia:webdrivermanager:' + webdriverManagerVersion
     implementation 'com.google.code.gson:gson:' + gsonVersion
 }

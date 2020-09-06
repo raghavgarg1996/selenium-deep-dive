@@ -32,7 +32,7 @@ public class MyScheduleEx2Test {
     private static final By addSessionToMyScheduleLocator = By.cssSelector("a[data-tooltip='Add to My Schedule']");
     private static final String screenshotsDir = System.getenv("screenshotsDir");
 
-    @BeforeMethod
+//    @BeforeMethod
     private WebDriver createDriver(Method method) {
         String methodName = method.getName();
         System.out.println("CreateDriver for test: " + methodName);
@@ -59,7 +59,7 @@ public class MyScheduleEx2Test {
         return driver;
     }
 
-    @AfterMethod
+//    @AfterMethod
     public void tearDown() {
         if (null != driver) {
             driver.quit();

@@ -5,12 +5,13 @@ import java.util.Map;
 
 public class SessionContext {
     private static Map<Long, TestExecutionContext> sessionContext;
-
+    private static int screenshotCounter;
 
     static void instantiate() {
         if (null == sessionContext) {
             System.out.println("Instantiate SessionContext");
             sessionContext = new HashMap<>();
+            screenshotCounter = 0;
         }
     }
 
@@ -44,5 +45,9 @@ public class SessionContext {
 
             dumpSessionContext();
         }
+    }
+
+    public static int getScreenshotCounter() {
+        return ++screenshotCounter;
     }
 }

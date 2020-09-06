@@ -11,7 +11,7 @@ import java.io.IOException;
 import static com.anandbagmar.se.learn.SessionContext.getContext;
 
 public class ScreenShots {
-    private static String screenshotsDir = (null == System.getenv("screenshotsDir")) ? "reports/screenshots" : System.getenv("screenshotsDir");
+    private static final String screenshotsDir = (null == System.getenv("screenshotsDir")) ? "reports/screenshots" : System.getenv("screenshotsDir");
 
     public static void takeScreenshot(String screenshotName) {
         TestExecutionContext testExecutionContext = getContext(Thread.currentThread().getId());

@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        gradleVersionProperty = '6.5'
+        gradleVersionProperty = '6.6.1'
         masterThoughtVersion = '+'
         testNGVersion = '+'
         seleniumVersion = '3+'

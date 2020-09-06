@@ -1,5 +1,6 @@
 package com.anandbagmar.se.learn.pages;
 
+import com.anandbagmar.se.learn.SessionContext;
 import com.anandbagmar.se.learn.TestExecutionContext;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ import static com.anandbagmar.se.learn.SessionContext.getContext;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public abstract class BasePage {
-    protected static final String baseUrl = "https://dev.confengine.com";
+    protected static final String baseUrl = SessionContext.getBaseUrl();
     protected final WebDriver driver;
 
     BasePage() {

@@ -1,11 +1,10 @@
 buildscript {
     ext {
         gradleVersionProperty = '6.6.1'
-        masterThoughtVersion = '+'
         testNGVersion = '+'
         seleniumVersion = '3+'
         webdriverManagerVersion = '+'
-        jsonSimpleVersion = '+'
+        gsonVersion = '+'
     }
 }
 
@@ -47,9 +46,8 @@ sourceSets {
 dependencies {
     implementation 'org.testng:testng:' + testNGVersion
     implementation 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
-    implementation 'net.masterthought:cucumber-reporting:' + masterThoughtVersion
     implementation 'io.github.bonigarcia:webdrivermanager:' + webdriverManagerVersion
-    implementation 'com.googlecode.json-simple:json-simple:' + jsonSimpleVersion
+    implementation 'com.google.code.gson:gson:' + gsonVersion
 }
 
 project.ext.logDir = "${rootDir}/reports"

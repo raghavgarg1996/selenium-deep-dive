@@ -105,7 +105,7 @@ public class MyScheduleEx2Test {
 
     private String getPathForChromeDriverFromMachine() {
         WebDriverManager.chromedriver().setup();
-        String chromeDriverPath = WebDriverManager.chromedriver().getBinaryPath();
+        String chromeDriverPath = WebDriverManager.chromedriver().getDownloadedDriverPath();
         System.out.println("ChromeDriver path: " + chromeDriverPath);
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         return chromeDriverPath;
@@ -113,7 +113,7 @@ public class MyScheduleEx2Test {
 
     private String getPathForFirefoxDriverFromMachine() {
         WebDriverManager.firefoxdriver().setup();
-        String firefoxDriverPath = WebDriverManager.firefoxdriver().getBinaryPath();
+        String firefoxDriverPath = WebDriverManager.firefoxdriver().getDownloadedDriverPath();
         System.out.println("FirefoxDriver path: " + firefoxDriverPath);
         System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
         return firefoxDriverPath;

@@ -79,14 +79,14 @@ public abstract class BaseTest {
 
     private void setPathPropertyForChromeDriverFromMachine() {
         WebDriverManager.chromedriver().setup();
-        String chromeDriverPath = WebDriverManager.chromedriver().getBinaryPath();
+        String chromeDriverPath = WebDriverManager.chromedriver().getDownloadedDriverPath();
         System.out.println("ChromeDriver path: " + chromeDriverPath);
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
     }
 
     private void setPathPropertyForFirefoxDriverFromMachine() {
         WebDriverManager.firefoxdriver().setup();
-        String firefoxDriverPath = WebDriverManager.firefoxdriver().getBinaryPath();
+        String firefoxDriverPath = WebDriverManager.firefoxdriver().getDownloadedDriverPath();
         System.out.println("FirefoxDriver path: " + firefoxDriverPath);
         System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
     }

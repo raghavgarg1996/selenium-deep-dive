@@ -2,7 +2,7 @@ package com.anandbagmar.se.learn.businessLayer;
 
 import com.anandbagmar.se.learn.pages.ListViewSchedulePage;
 
-import static org.testng.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ScheduleBL {
     public ScheduleBL addSessionToMySchedule() {
@@ -23,7 +23,7 @@ public class ScheduleBL {
                                  .sessionsInMySchedule();
         System.out.println("Final count = " + finalCount);
 
-        assertEquals(finalCount, initialCount + expectedChangeInSessionCount, errorMessage);
+        assertThat(finalCount).as(errorMessage).isEqualTo(initialCount + expectedChangeInSessionCount);
     }
 
     public ScheduleBL shouldNotBeAbleToAddSessionToMySchedule() {

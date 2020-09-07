@@ -12,12 +12,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.time.Duration;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MyScheduleEx2Test {
     private static final String url = "https://dev.confengine.com";
@@ -88,7 +89,7 @@ public class MyScheduleEx2Test {
         int finalCount = Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
         System.out.println("Final count = " + finalCount);
 
-        Assert.assertEquals(finalCount, initialCount + 1);
+        assertThat(finalCount).isEqualTo(initialCount + 1);
     }
 
     private void takeScreenshot(String screenshotName) {

@@ -34,7 +34,7 @@ public class SessionContext {
     }
 
     static synchronized void addContext(long threadId, TestExecutionContext testExecutionContext) {
-        System.out.println("Adding context for threadId: " + threadId);
+        System.out.printf("Adding context for threadId: '%d': Test name: '%s'%n", threadId, testExecutionContext.getTestName());
         sessionContext.put(threadId, testExecutionContext);
     }
 

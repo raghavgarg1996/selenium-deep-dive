@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MyScheduleEx1Test {
     //    @Test
@@ -36,7 +37,7 @@ public class MyScheduleEx1Test {
         int finalCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Final count = " + finalCount);
 
-        Assert.assertEquals(finalCount, initialCount + 1);
+        assertThat(finalCount).isEqualTo(initialCount + 1);
 
         driver.quit();
     }

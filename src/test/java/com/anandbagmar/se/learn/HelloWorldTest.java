@@ -1,6 +1,6 @@
 package com.anandbagmar.se.learn;
 
-import static org.testng.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class HelloWorldTest {
 
@@ -10,6 +10,6 @@ public class HelloWorldTest {
         HelloWorld helloWorld = new HelloWorld();
         String message = helloWorld.getDefaultMessage();
         System.out.println(message);
-        assertEquals(message, expectedDefaultMessage, "Default message is incorrect");
+        assertThat(message).as("Default message is incorrect").isEqualTo(expectedDefaultMessage);
     }
 }

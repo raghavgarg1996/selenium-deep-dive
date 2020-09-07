@@ -14,7 +14,8 @@ Run the tests from the IDE or from command line
 
 or, you can run the testng tests from your IDE
 
-# Exercise 2
+# Exercise 2 - Execute test from Exercise 1 in multiple browsers 
+
 ### Site: https://dev.confengine.com/
 
 ### Scenario: As a non-logged-in user, I should be asked to login when adding a session to my schedule

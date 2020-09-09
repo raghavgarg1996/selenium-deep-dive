@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MyScheduleEx1Test {
-    @Test
+//    @Test
     public void addSessionToMySchedule() {
         String chromeDriverPath = System.getenv("HOME") + "/.m2/repository/webdriver/chromedriver/mac64/85.0.4183.87/chromedriver";
         System.out.println("ChromeDriver path: " + chromeDriverPath);

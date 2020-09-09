@@ -27,6 +27,11 @@ public class MyScheduleEx1Test {
 
         driver.findElement(By.xpath("//div/a[@href='/selenium-conf-2020/schedule']")).click();
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         int initialCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Initial count = " + initialCount);
 
@@ -34,6 +39,11 @@ public class MyScheduleEx1Test {
 
         driver.findElement(By.id("cancel_login_model")).click();
 
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         int finalCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Final count = " + finalCount);
 

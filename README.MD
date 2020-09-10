@@ -8,8 +8,16 @@ Code snippets used in the Selenium Deep Dive workshop
 
 # Running the tests
 Run the tests from the IDE or from command line
+
+* Windows:
+
 ```
-./gradlew clean test
+    gradlew.bat clean test
 ```
 
-or, you can run the testng tests from your IDE
+ * Mac OS / Linux
+ ```
+    ./gradlew clean test
+```
+
+or, you can run the tests from your IDE

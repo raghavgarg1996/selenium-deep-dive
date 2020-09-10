@@ -12,7 +12,7 @@ public class LandingPage extends BasePage {
     private static final By pastLocator = By.xpath("//a[text()=\"Past\"]");
 
     public LandingPage() {
-        getDriver().get(baseUrl);
+        driver.get(baseUrl);
         takeScreenshot("Landing page");
         waitFor(2);
     }

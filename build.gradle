@@ -1,11 +1,11 @@
 buildscript {
     ext {
-        gradleVersionProperty = '6.6.1'
-        testNGVersion = '+'
-        seleniumVersion = '3+'
-        webdriverManagerVersion = '+'
+        gradleVersionProperty = '7.5'
+        testNGVersion = '7.6.1'
+        seleniumVersion = '4+'
+        webdriverManagerVersion = '5.2.1'
         owaspJavaHtmlSanitizerVersion = '+'
-        gsonVersion = '+'
+        gsonVersion = '2.9.0'
     }
 }
 

@@ -1,11 +1,11 @@
 buildscript {
     ext {
-        gradleVersionProperty = '6.6.1'
-        testNGVersion = '+'
-        seleniumVersion = '3+'
-        webdriverManagerVersion = '+'
+        gradleVersionProperty = '7.5'
+        testNGVersion = '7.6.1'
+        seleniumVersion = '4.3.0'
+        webdriverManagerVersion = '5.2.1'
         owaspJavaHtmlSanitizerVersion = '+'
-        gsonVersion = '+'
+        gsonVersion = '2.9.0'
     }
 }
 
@@ -20,9 +20,7 @@ group 'com.anandbagmar'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 
 sourceSets {
@@ -60,11 +58,11 @@ test {
             parallel = 'methods'
             threadCount = 2
         }
-        reports.html.enabled = true
-        reports.html.setDestination(file("${project.logDir}/html"))
+        reports.html.required = true
+        reports.html.destination(file("${project.logDir}/html"))
 
-        reports.junitXml.enabled = true
-        reports.junitXml.setDestination(file("${project.logDir}/junit"))
+        reports.junitXml.required = true
+        reports.junitXml.destination(file("${project.logDir}/junit"))
         testLogging {
             events "started", "passed", "skipped", "failed"
             // show standard out and standard error of the test JVM(s) on the console

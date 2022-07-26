@@ -20,4 +20,14 @@ Run the tests from the IDE or from command line
     ./gradlew clean test
 ```
 
-or, you can run the tests from your IDE
+or, you can run the testng tests from your IDE
+
+### Test implementation details:
+The test works with multiple browsers. Default browser is Chrome. To change browser, set environment variable 'browser'
+```
+    export browser=firefox (Mac OS X / Linux)
+
+    or
+
+    set browser=firefox (Windows)
+```

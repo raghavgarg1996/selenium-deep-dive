@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:' + owaspJavaHtmlSanitizerVersion
     implementation 'io.github.bonigarcia:webdrivermanager:' + webdriverManagerVersion
     implementation 'com.google.code.gson:gson:' + gsonVersion
+    implementation 'org.assertj:assertj-core:' + assertJVersion
 }
 
 project.ext.logDir = "${rootDir}/reports"

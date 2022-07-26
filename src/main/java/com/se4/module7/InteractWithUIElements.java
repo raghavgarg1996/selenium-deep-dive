@@ -3,6 +3,7 @@ package com.se4.module7;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -65,6 +66,24 @@ public class InteractWithUIElements {
         assertThat(firstOption)
                 .as("Drop down is not selected with 'Manual Testing'")
                 .isEqualTo("Manual Testing");
+    }
+
+    @Test
+    public void dragAndDropTest() {
+        String URL = "https://demoqa.com/droppable/";
+        driver.get(URL);
+
+        // It is always advisable to Maximize the window before performing DragNDrop action
+        driver.manage().window().maximize();
+
+        //Actions class method to drag and drop
+        Actions builder = new Actions(driver);
+
+        WebElement from = driver.findElement(By.id("draggable"));
+
+        WebElement to = driver.findElement(By.id("droppable"));
+        //Perform drag and drop
+        builder.dragAndDrop(from, to).perform();
     }
 
 }

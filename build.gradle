@@ -6,6 +6,7 @@ buildscript {
         webdriverManagerVersion = '5.2.1'
         owaspJavaHtmlSanitizerVersion = '+'
         gsonVersion = '2.9.0'
+        assertJVersion = '3.23.0'
     }
 }
 

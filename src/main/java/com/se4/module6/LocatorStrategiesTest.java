@@ -40,6 +40,7 @@ public class LocatorStrategiesTest {
         WebElement toolCheckBoxRC = driver.findElement(By.cssSelector("input[name='tool'][value='RC']"));
         assertThat(toolCheckBoxRC).as("Tools check box is null").isNotNull();
 
+        // id
         WebElement dynamicColorBtn = driver.findElement(By.id("dynamicColor"));
         assertThat(dynamicColorBtn).as("Dynamic color button is null").isNotNull();
 

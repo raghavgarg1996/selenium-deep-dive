@@ -16,23 +16,9 @@ public class RelativeLocatorsExample {
         ChromeDriver driver = new ChromeDriver();
         driver.get("https://automationbookstore.dev/");
         By idLocator =RelativeLocator.with(By.tagName("li")).toLeftOf(By.id("pid6"));
-//                        .below(By.id("pid1"))
-//                .getAttribute("id");
-         String id = driver.findElement(idLocator).getText();
+
+        String id = driver.findElement(idLocator).getText();
         System.out.println(id);
-
-
-//        driver.get("https://www.netflix.com/in/");
-//
-//
-//        WebElement emailTxtBox= driver.findElement(By.id("id_email_hero_fuji"));
-//        emailTxtBox.sendKeys("some_email@id.com");
-//        driver.findElement(with(By.tagName("div")).toLeftOf(emailTxtBox)).click();
-//
-//        String data = RelativeLocator.with(By.tagName(("li")).above(By.xpath("//li[@placeholder='footer_responsive_link_help_item']")).below(By.xpath("//li[@placeholder='footer_responsive_link_help_item']")))
-//                    .getText();
-//        System.out.println(data);
-
 
     }
 }

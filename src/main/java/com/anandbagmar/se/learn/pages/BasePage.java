@@ -44,8 +44,7 @@ public abstract class BasePage {
     }
 
     protected void explicitlyWaitFor(ExpectedCondition isTrue, int waitForSeconds) {
-        long duration = Duration.ofSeconds(waitForSeconds).getSeconds();
-        new WebDriverWait(driver, duration).until(isTrue);
+        new WebDriverWait(driver, Duration.ofSeconds(waitForSeconds)).until(isTrue);
     }
 
     protected void scrollElementIntoView(WebElement webElement) {

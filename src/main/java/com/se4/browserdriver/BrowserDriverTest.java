@@ -1,7 +1,11 @@
 package com.se4.browserdriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,8 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BrowserDriverTest {
 
-    private static ChromeDriver driver;
-    private final String browser = System.getenv("browser") == null ? "chrome" : System.getenv("browser");
+    private static WebDriver driver;
+    private final String browser = System.getenv("browser") == null ? "chrome" : System.getenv("browser").toLowerCase().trim();
     private String downloadedDriverVersion;
     private String downloadedDriverPath;
 
@@ -23,7 +27,22 @@ public class BrowserDriverTest {
         System.out.println("WebDriverManager - browser version: " + downloadedDriverVersion);
         downloadedDriverPath = webDriverManager.getDownloadedDriverPath();
         System.out.println("WebDriverManager - browser driver path: " + downloadedDriverPath);
-        driver = new ChromeDriver();
+        switch(browser) {
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
+            case "firefox":
+                driver = new FirefoxDriver();
+                break;
+            case "safari":
+                driver = new SafariDriver();
+                break;
+            case "edge":
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Browser " + browser + " is not supported");
+        }
     }
 
     @AfterTest

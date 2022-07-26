@@ -22,6 +22,8 @@ public class CaptureConsoleLogsTest {
     @BeforeMethod
     void setup() {
         driver = (ChromeDriver) new Driver().createDriver("chrome");
+        chromeDevTools = driver.getDevTools();
+        chromeDevTools.createSession();
     }
 
     @AfterMethod
@@ -32,9 +34,6 @@ public class CaptureConsoleLogsTest {
 
     @Test
     void captureConsoleLogsTest() {
-        chromeDevTools = driver.getDevTools();
-        chromeDevTools.createSession();
-
         chromeDevTools.send(Log.enable());
         ArrayList capturedLogs = new ArrayList();
 

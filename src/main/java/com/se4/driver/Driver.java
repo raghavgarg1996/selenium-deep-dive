@@ -3,6 +3,7 @@ package com.se4.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -21,7 +22,9 @@ public class Driver {
         System.out.println("WebDriverManager - browser driver path: " + downloadedDriverPath);
         switch(browser) {
             case "chrome":
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
                 driver = new FirefoxDriver();

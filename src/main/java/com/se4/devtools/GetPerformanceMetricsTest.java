@@ -10,10 +10,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.openqa.selenium.devtools.v101.performance.Performance.disable;
@@ -44,6 +42,7 @@ public class GetPerformanceMetricsTest {
         List<Metric> metrics = chromeDevTools.send(getMetrics());
         chromeDevTools.send(disable());
         metrics.forEach(capturedMetric -> System.out.println(capturedMetric.getName() + "::" + capturedMetric.getValue()));
-        assertThat(metrics).as("No performance metrics captured").isNotEmpty();
+        assertThat(metrics).as("No performance metrics captured")
+                           .isNotEmpty();
     }
 }

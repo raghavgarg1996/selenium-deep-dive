@@ -1,6 +1,7 @@
 package com.anandbagmar.se.learn.pages;
 
-import com.anandbagmar.se.learn.*;
+import com.anandbagmar.se.learn.SessionContext;
+import com.anandbagmar.se.learn.TestExecutionContext;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,23 +21,24 @@ public abstract class BasePage {
         driver = getDriver();
     }
 
-    protected void waitFor(int numSeconds) {
-        try {
-            System.out.printf("Hard sleep / pause of '%d' seconds%n", numSeconds);
-            Thread.sleep(numSeconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     protected synchronized WebDriver getDriver() {
         TestExecutionContext testExecutionContext = getTestExecutionContext();
         return testExecutionContext.getInnerDriver();
     }
 
     protected TestExecutionContext getTestExecutionContext() {
-        TestExecutionContext testExecutionContext = getContext(Thread.currentThread().getId());
+        TestExecutionContext testExecutionContext = getContext(Thread.currentThread()
+                                                                     .getId());
         return testExecutionContext;
+    }
+
+    protected void waitFor(int numSeconds) {
+        try {
+            System.out.printf("Hard sleep / pause of '%d' seconds%n", numSeconds);
+            Thread.sleep(numSeconds * 1000);
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void explicitlyWaitFor(ExpectedCondition isTrue) {

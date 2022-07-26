@@ -10,6 +10,7 @@ public class HelloWorld {
     }
 
     public String getDefaultMessage() {
-        return this.getClass().getSimpleName();
+        return this.getClass()
+                   .getSimpleName();
     }
 }

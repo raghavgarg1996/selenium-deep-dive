@@ -6,9 +6,8 @@ import com.anandbagmar.se.learn.pages.LandingPage;
 public class ConferenceBL {
 
     public ConferenceBL selectUpcomingConference(String conferenceName) {
-        new LandingPage()
-                .selectFromUpcomingConferences()
-                .selectConference(conferenceName);
+        new LandingPage().selectFromUpcomingConferences()
+                         .selectConference(conferenceName);
         return this;
     }
 
@@ -18,9 +17,8 @@ public class ConferenceBL {
     }
 
     public ConferenceBL selectConferenceFromPast(String conferenceName) {
-        new LandingPage()
-                .selectFromPastConferences()
-                .selectConference(conferenceName);
+        new LandingPage().selectFromPastConferences()
+                         .selectConference(conferenceName);
         return this;
     }
 }

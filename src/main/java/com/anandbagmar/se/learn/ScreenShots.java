@@ -14,16 +14,18 @@ public class ScreenShots {
     private static final String screenshotsDir = (null == System.getenv("screenshotsDir")) ? "reports/screenshots" : System.getenv("screenshotsDir");
 
     public static void takeScreenshot(String screenshotName) {
-        TestExecutionContext testExecutionContext = getContext(Thread.currentThread().getId());
+        TestExecutionContext testExecutionContext = getContext(Thread.currentThread()
+                                                                     .getId());
         int screenshotCounter = testExecutionContext.getScreenshotCounter();
         WebDriver driver = testExecutionContext.getInnerDriver();
         File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        screenshotName = screenshotName.replaceAll(" ", "").replaceAll("'", "");
+        screenshotName = screenshotName.replaceAll(" ", "")
+                                       .replaceAll("'", "");
         String destinationScreenshotFileName = screenshotsDir + "/" + screenshotCounter + "-" + testExecutionContext.getTestName() + "-" + screenshotName + ".png";
         System.out.println("Saving screenshot: " + destinationScreenshotFileName);
         try {
             FileUtils.copyFile(screenshotAs, new File(destinationScreenshotFileName));
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }

@@ -16,8 +16,9 @@ public class SessionContext {
     private static int screenshotCounter;
     private static String baseUrl;
 
-    static void instantiate() throws IOException {
-        if (null == sessionContext) {
+    static void instantiate() throws
+                              IOException {
+        if(null == sessionContext) {
             System.out.println("Instantiate SessionContext");
             sessionContext = new HashMap<>();
             screenshotCounter = 0;
@@ -25,11 +26,15 @@ public class SessionContext {
         loadEnvironmentConfig();
     }
 
-    private static void loadEnvironmentConfig() throws IOException {
+    private static void loadEnvironmentConfig() throws
+                                                IOException {
         Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/env.json"));
-        JsonObject parser = JsonParser.parseReader(reader).getAsJsonObject();
-        JsonObject envConfig = parser.get(env).getAsJsonObject();
-        baseUrl = envConfig.get("url").getAsString();
+        JsonObject parser = JsonParser.parseReader(reader)
+                                      .getAsJsonObject();
+        JsonObject envConfig = parser.get(env)
+                                     .getAsJsonObject();
+        baseUrl = envConfig.get("url")
+                           .getAsString();
         System.out.printf("Running test against env: '%s' with config: '%s'%n", env, envConfig);
     }
 
@@ -38,30 +43,31 @@ public class SessionContext {
         sessionContext.put(threadId, testExecutionContext);
     }
 
-    private static synchronized void dumpSessionContext() {
-        System.out.println("SessionContext dump");
-        for (Long aLong : sessionContext.keySet()) {
-            System.out.println("ThreadID: " + aLong + ", TestExecutionContext hashcode: " + sessionContext.get(aLong).hashCode());
-        }
-    }
-
     public static synchronized TestExecutionContext getContext(long threadId) {
         return sessionContext.get(threadId);
     }
 
     static synchronized void removeContext(long threadId) {
-        if (null != sessionContext) {
+        if(null != sessionContext) {
             System.out.println("SessionContext is initialized");
             dumpSessionContext();
 
             TestExecutionContext testExecutionContext = sessionContext.remove(threadId);
-            if (null == testExecutionContext) {
+            if(null == testExecutionContext) {
                 System.out.println("ERROR: TestExecutionContext was already removed. This is crazy!");
             } else {
                 System.out.println("Removed TestExecutionContext for test: " + testExecutionContext.getTestName());
             }
 
             dumpSessionContext();
+        }
+    }
+
+    private static synchronized void dumpSessionContext() {
+        System.out.println("SessionContext dump");
+        for(Long aLong : sessionContext.keySet()) {
+            System.out.println("ThreadID: " + aLong + ", TestExecutionContext hashcode: " + sessionContext.get(aLong)
+                                                                                                          .hashCode());
         }
     }
 

@@ -1,4 +1,3 @@
 package com.anandbagmar.se.learn.businessLayer;
 
-public class LoginBL {
-}
+public class LoginBL {}

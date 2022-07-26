@@ -17,10 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SetAuthHeaderTest {
 
-    private static Map<String, Object> params = new HashMap<>();
     private static final String USERNAME = "guest";
     private static final String PASSWORD = "guest";
-
+    private static Map<String, Object> params = new HashMap<>();
     private DevTools chromeDevTools;
     private ChromeDriver driver;
 

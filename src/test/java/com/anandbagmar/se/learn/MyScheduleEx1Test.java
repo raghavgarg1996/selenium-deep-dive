@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MyScheduleEx1Test {
     @Test
     public void addSessionToMySchedule() {
-        String chromeDriverPath = System.getenv("HOME") + "/.cache/selenium/chromedriver/mac64/94.0.4606.61/chromedriver";
+        String chromeDriverPath = System.getenv("HOME") + "/.cache/selenium/chromedriver/mac64/103.0.5060.134/chromedriver";
         System.out.println("ChromeDriver path: " + chromeDriverPath);
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         ChromeOptions options = new ChromeOptions();
@@ -24,9 +24,9 @@ public class MyScheduleEx1Test {
 
         driver.findElement(By.xpath("//a[text()=\"Upcoming\"]")).click();
 
-        driver.findElement(By.cssSelector("img[title='Selenium Conf 2020']")).click();
+        driver.findElement(By.cssSelector("img[title='Selenium Conf 2022']")).click();
 
-        driver.findElement(By.xpath("//div/a[@href='/selenium-conf-2020/schedule']")).click();
+        driver.findElement(By.xpath("//div/a[@href='/selenium-conf-2022/schedule']")).click();
 
         int initialCount = Integer.parseInt(driver.findElement(By.id("my-schedule-count")).getText());
         System.out.println("Initial count = " + initialCount);

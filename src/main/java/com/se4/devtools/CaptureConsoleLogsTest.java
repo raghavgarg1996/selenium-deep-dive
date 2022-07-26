@@ -1,8 +1,6 @@
 package com.se4.devtools;
 
 import com.se4.driver.Driver;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v101.log.Log;

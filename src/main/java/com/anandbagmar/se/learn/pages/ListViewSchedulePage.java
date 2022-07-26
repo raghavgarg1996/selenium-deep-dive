@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-public class ListViewSchedulePage extends BasePage {
+public class ListViewSchedulePage
+        extends BasePage {
     private static final By myScheduleCountLocator = By.id("my-schedule-count");
     private static final By addSessionToMyScheduleLocator = By.cssSelector("a[data-tooltip='Add to My Schedule']");
     private static final By cancelLoginModelLocator = By.id("cancel_login_model");
@@ -16,11 +17,13 @@ public class ListViewSchedulePage extends BasePage {
     }
 
     public int sessionsInMySchedule() {
-        return Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
+        return Integer.parseInt(driver.findElement(myScheduleCountLocator)
+                                      .getText());
     }
 
     public ListViewSchedulePage addSessionToMySchedule() {
-        driver.findElement(addSessionToMyScheduleLocator).click();
+        driver.findElement(addSessionToMyScheduleLocator)
+              .click();
         explicitlyWaitFor(elementToBeClickable(cancelLoginModelLocator), 3);
         takeScreenshot("Add session to My Schedule");
         return this;

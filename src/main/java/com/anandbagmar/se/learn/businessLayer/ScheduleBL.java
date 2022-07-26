@@ -17,13 +17,13 @@ public class ScheduleBL {
         int initialCount = listViewSchedulePage.sessionsInMySchedule();
         System.out.println("Initial count = " + initialCount);
 
-        int finalCount = listViewSchedulePage
-                                 .addSessionToMySchedule()
-                                 .cancelLogin()
-                                 .sessionsInMySchedule();
+        int finalCount = listViewSchedulePage.addSessionToMySchedule()
+                                             .cancelLogin()
+                                             .sessionsInMySchedule();
         System.out.println("Final count = " + finalCount);
 
-        assertThat(finalCount).as(errorMessage).isEqualTo(initialCount + expectedChangeInSessionCount);
+        assertThat(finalCount).as(errorMessage)
+                              .isEqualTo(initialCount + expectedChangeInSessionCount);
     }
 
     public ScheduleBL shouldNotBeAbleToAddSessionToMySchedule() {

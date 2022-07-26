@@ -90,32 +90,15 @@ public class InteractWithUIElements {
 
     @Test
     public void hoverTest() {
-        driver.get("https://www.google.com/");
+        driver.get("https://applitools.com/");
 
-        // open a new window
-        driver.switchTo().newWindow(WindowType.WINDOW);
-        //navigate to a URL on newly opened window
-        driver.navigate().to("https://www.youtube.com/");
+        Actions actions = new Actions(driver);
+        WebElement mainMenu = driver.findElement(By.xpath("//a[text()='Product']"));
+        actions.moveToElement(mainMenu);
 
-        // get the window ids to switch between them
-        Set<String> windows = driver.getWindowHandles();
-        Iterator<String> it = windows.iterator();
-        String googleWindow = it.next();
-        String youtubeWindow = it.next();
-        System.out.println(driver.getTitle());
-
-        // switch the control to the google window
-        driver.switchTo().window(googleWindow);
-        System.out.println(driver.getTitle());
-
-        // open a new tabbed window
-        driver.switchTo().newWindow(WindowType.TAB);
-        //navigate to a URL on newly opened tabbed window
-        driver.navigate().to("https://www.gmail.com/");
-        System.out.println(driver.getTitle());
-
-        driver.switchTo().window(youtubeWindow);
-        System.out.println(driver.getTitle());
+        WebElement subMenu = driver.findElement(By.xpath("//span[text()='Ultrafast Grid']"));
+        actions.moveToElement(subMenu);
+        actions.click().build().perform();
 
         driver.quit();
     }

@@ -20,4 +20,27 @@ Run the tests from the IDE or from command line
     ./gradlew clean test
 ```
 
+```
+    mvn clean test
+```
+
+* To run a specific test:
+
+```
+    ./gradlew clean test --tests <test_name>
+    
+    ex: 
+    
+    ./gradlew clean test --tests HelloWorldTest
+```
+
+```
+    mvn clean test -Dtest=<test_name>
+    
+    ex: 
+    
+    mvn clean test -Dtest=HelloWorldTest
+```
+
+
 or, you can run the tests from your IDE

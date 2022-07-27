@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SetNetworkTest {
+public class SimulateNetworkBandwidthTest {
 
     private DevTools chromeDevTools;
     private ChromeDriver driver;
@@ -32,7 +32,7 @@ public class SetNetworkTest {
     }
 
     @Test
-    public void setNetworkTest() {
+    public void simulateNetworkBandwidthTest() {
         Map networkConditions = new HashMap() {{
             put("offline", false);
             put("latency", 20);

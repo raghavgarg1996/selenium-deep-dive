@@ -1,12 +1,10 @@
 buildscript {
     ext {
         gradleVersionProperty = '7.5'
-        testNGVersion = '7+'
-        seleniumVersion = '4+'
-        webdriverManagerVersion = '5+'
-        owaspJavaHtmlSanitizerVersion = '+'
-        gsonVersion = '+'
-        assertJVersion = '+'
+        testNGVersion = '7.6.1'
+        seleniumVersion = '4.3.0'
+        webdriverManagerVersion = '5.2.1'
+        assertJVersion = '3.23.1'
     }
 }
 
@@ -46,9 +44,7 @@ sourceSets {
 dependencies {
     implementation 'org.testng:testng:' + testNGVersion
     implementation 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
-    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:' + owaspJavaHtmlSanitizerVersion
     implementation 'io.github.bonigarcia:webdrivermanager:' + webdriverManagerVersion
-    implementation 'com.google.code.gson:gson:' + gsonVersion
     implementation 'org.assertj:assertj-core:' + assertJVersion
 }
 

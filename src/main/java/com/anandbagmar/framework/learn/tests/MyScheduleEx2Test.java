@@ -1,17 +1,18 @@
 package com.anandbagmar.framework.learn.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,15 +23,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MyScheduleEx2Test {
     private static final String url = "https://dev.confengine.com";
-    private static final By upcomingLocator = By.xpath("//a[text()=\"Upcoming\"]");
-    private static final By conferenceNameLocator = By.cssSelector("img[title='Selenium Conf 2020']");
-    private static final By viewScheduleLocator = By.xpath("//div/a[@href='/selenium-conf-2020/schedule']");
-    private static final By myScheduleCountLocator = By.id("my-schedule-count");
-    private static final By addSessionToMyScheduleLocator = By.cssSelector("a[data-tooltip='Add to My Schedule']");
-    private static final String screenshotsDir = System.getenv("screenshotsDir");
+    private static final By upcomingEventsXpath = By.xpath("//a[text()=\"Upcoming\"]");
+    private static final By conferenceNameXpath = By.cssSelector("div[title='Selenium Conf 2022']");
+    private static final By viewScheduleXpath = By.xpath("//div/a[@href='/conferences/selenium-conf-2022/schedule']");
+    private static final By myScheduleCountId = By.id("my-schedule-count");
+    private static final By addSessionToMyScheduleCSS = By.cssSelector("a[data-tooltip='Add to My Schedule']");
+    private final static String PROJECT_PATH = System.getProperty("user.dir");
+
+    private final String SCREENSHOT_DIR = PROJECT_PATH + "/build/screenshots/";
+    private final By dismissCookieXpath = By.xpath("//a[text()='Got it!']");
+    private final By attendEventsXpath = By.xpath("//li[@class='no-hover']//span[text()='Attend Events']");
+    private final By cancelLoginCSS = By.id("cancel_login_model");
     WebDriver driver = null;
 
-    //    @BeforeMethod
+    @BeforeMethod
     private WebDriver createDriver(Method method) {
         String methodName = method.getName();
         System.out.println("CreateDriver for test: " + methodName);
@@ -54,65 +60,75 @@ public class MyScheduleEx2Test {
             default:
                 driver = new ChromeDriver();
         }
+        driver.manage()
+              .timeouts()
+              .implicitlyWait(Duration.ofSeconds(10));
         return driver;
     }
 
     private String getPathForChromeDriverFromMachine() {
-        WebDriverManager.chromedriver()
-                        .setup();
-        String chromeDriverPath = WebDriverManager.chromedriver()
-                                                  .getDownloadedDriverPath();
-        System.out.println("ChromeDriver path: " + chromeDriverPath);
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        WebDriverManager webDriverManager = WebDriverManager.getInstance(DriverManagerType.CHROME);
+        webDriverManager.setup();
+        System.out.println("WebDriverManager - browser version: " + webDriverManager.getDownloadedDriverVersion());
+        String chromeDriverPath = webDriverManager.getDownloadedDriverPath();
+        System.out.println("WebDriverManager - browser driver path: " + chromeDriverPath);
         return chromeDriverPath;
     }
 
     private String getPathForFirefoxDriverFromMachine() {
-        WebDriverManager.firefoxdriver()
-                        .setup();
-        String firefoxDriverPath = WebDriverManager.firefoxdriver()
-                                                   .getDownloadedDriverPath();
-        System.out.println("FirefoxDriver path: " + firefoxDriverPath);
-        System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
+        WebDriverManager webDriverManager = WebDriverManager.getInstance(DriverManagerType.FIREFOX);
+        webDriverManager.setup();
+        System.out.println("WebDriverManager - browser version: " + webDriverManager.getDownloadedDriverVersion());
+        String firefoxDriverPath = webDriverManager.getDownloadedDriverPath();
+        System.out.println("WebDriverManager - browser driver path: " + firefoxDriverPath);
         return firefoxDriverPath;
     }
 
-    //    @AfterMethod
+    @AfterMethod
     public void tearDown() {
         if(null != driver) {
             driver.quit();
         }
     }
 
-    //    @Test
+    @Test
     public void addSessionToMySchedule() {
         driver.get(url);
 
-        driver.findElement(upcomingLocator)
+        WebElement cookieElement = driver.findElement(dismissCookieXpath);
+        if(null != cookieElement) {
+            cookieElement.click();
+        }
+
+        driver.findElement(attendEventsXpath)
               .click();
-        driver.findElement(conferenceNameLocator)
+
+        driver.findElement(upcomingEventsXpath)
+              .click();
+
+        driver.findElement(conferenceNameXpath)
               .click();
 
         takeScreenshot("conference");
 
-        driver.findElement(viewScheduleLocator)
+        driver.findElement(viewScheduleXpath)
               .click();
 
         takeScreenshot("view schedule");
 
-        int initialCount = Integer.parseInt(driver.findElement(myScheduleCountLocator)
+        int initialCount = Integer.parseInt(driver.findElement(myScheduleCountId)
                                                   .getText());
         System.out.println("Initial count = " + initialCount);
 
-        driver.findElement(addSessionToMyScheduleLocator)
+        driver.findElement(addSessionToMyScheduleCSS)
               .click();
         takeScreenshot("add session to My Schedule");
 
-        driver.findElement(By.id("cancel_login_model"))
+        driver.findElement(cancelLoginCSS)
               .click();
         takeScreenshot("cancel login");
 
-        int finalCount = Integer.parseInt(driver.findElement(myScheduleCountLocator)
+        int finalCount = Integer.parseInt(driver.findElement(myScheduleCountId)
                                                 .getText());
         System.out.println("Final count = " + finalCount);
 
@@ -121,7 +137,7 @@ public class MyScheduleEx2Test {
 
     private void takeScreenshot(String screenshotName) {
         File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String destinationScreenshotFileName = screenshotsDir + "/" + screenshotName + ".png";
+        String destinationScreenshotFileName = SCREENSHOT_DIR + "/" + screenshotName + ".png";
         System.out.println("Saving screenshot: " + destinationScreenshotFileName);
         try {
             FileUtils.copyFile(screenshotAs, new File(destinationScreenshotFileName));

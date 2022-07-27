@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CaptureScreenshotsTest {
 
     WebDriver driver;
-    final static String PROJECT_PATH = System.getProperty("user.dir");
+    private final static String PROJECT_PATH = System.getProperty("user.dir");
     private final String SCREENSHOT_DIR = PROJECT_PATH + "/build/screenshots/";
 
     @BeforeMethod

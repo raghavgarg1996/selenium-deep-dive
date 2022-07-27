@@ -1,7 +1,7 @@
-package com.anandbagmar.se.learn.pages;
+package com.anandbagmar.framework.learn.pages;
 
-import com.anandbagmar.se.learn.SessionContext;
-import com.anandbagmar.se.learn.TestExecutionContext;
+import com.anandbagmar.framework.learn.context.SessionContext;
+import com.anandbagmar.framework.learn.context.TestExecutionContext;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.anandbagmar.se.learn.SessionContext.getContext;
+import static com.anandbagmar.framework.learn.context.SessionContext.getContext;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public abstract class BasePage {

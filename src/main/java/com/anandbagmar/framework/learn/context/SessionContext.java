@@ -1,4 +1,4 @@
-package com.anandbagmar.se.learn;
+package com.anandbagmar.framework.learn.context;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -16,8 +16,7 @@ public class SessionContext {
     private static int screenshotCounter;
     private static String baseUrl;
 
-    static void instantiate() throws
-                              IOException {
+    public static void instantiate() {
         if(null == sessionContext) {
             System.out.println("Instantiate SessionContext");
             sessionContext = new HashMap<>();
@@ -26,9 +25,13 @@ public class SessionContext {
         loadEnvironmentConfig();
     }
 
-    private static void loadEnvironmentConfig() throws
-                                                IOException {
-        Reader reader = Files.newBufferedReader(Paths.get("src/test/resources/env.json"));
+    private static void loadEnvironmentConfig() {
+        Reader reader = null;
+        try {
+            reader = Files.newBufferedReader(Paths.get("src/test/resources/env.json"));
+        } catch(IOException e) {
+            throw new RuntimeException("Error in loading environment json file", e);
+        }
         JsonObject parser = JsonParser.parseReader(reader)
                                       .getAsJsonObject();
         JsonObject envConfig = parser.get(env)
@@ -38,7 +41,7 @@ public class SessionContext {
         System.out.printf("Running test against env: '%s' with config: '%s'%n", env, envConfig);
     }
 
-    static synchronized void addContext(long threadId, TestExecutionContext testExecutionContext) {
+    public static synchronized void addContext(long threadId, TestExecutionContext testExecutionContext) {
         System.out.printf("Adding context for threadId: '%d': Test name: '%s'%n", threadId, testExecutionContext.getTestName());
         sessionContext.put(threadId, testExecutionContext);
     }
@@ -47,7 +50,7 @@ public class SessionContext {
         return sessionContext.get(threadId);
     }
 
-    static synchronized void removeContext(long threadId) {
+    public static synchronized void removeContext(long threadId) {
         if(null != sessionContext) {
             System.out.println("SessionContext is initialized");
             dumpSessionContext();

@@ -1,12 +1,13 @@
-package com.anandbagmar.se.learn;
+package com.anandbagmar.framework.learn.tests;
 
+import com.anandbagmar.framework.learn.app.HelloWorld;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HelloWorldTest {
 
-//    @Test
+    @Test
     public void testGetDefaultMessage() {
         String expectedDefaultMessage = "HelloWorld";
         HelloWorld helloWorld = new HelloWorld();

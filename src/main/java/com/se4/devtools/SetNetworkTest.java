@@ -1,6 +1,6 @@
 package com.se4.devtools;
 
-import com.se4.driver.Driver;
+import com.anandbagmar.driver.Driver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v101.network.Network;

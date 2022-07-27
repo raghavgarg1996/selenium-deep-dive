@@ -1,4 +1,4 @@
-package com.anandbagmar.se.learn.pages;
+package com.anandbagmar.framework.learn.pages;
 
 public class SessionPage
         extends BasePage {}

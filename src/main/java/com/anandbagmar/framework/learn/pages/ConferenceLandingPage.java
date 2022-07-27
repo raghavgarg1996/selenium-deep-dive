@@ -1,8 +1,8 @@
-package com.anandbagmar.se.learn.pages;
+package com.anandbagmar.framework.learn.pages;
 
 import org.openqa.selenium.By;
 
-import static com.anandbagmar.se.learn.ScreenShots.takeScreenshot;
+import static com.anandbagmar.framework.learn.utilities.ScreenShots.takeScreenshot;
 
 public class ConferenceLandingPage
         extends BasePage {

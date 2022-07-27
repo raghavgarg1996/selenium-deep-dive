@@ -1,4 +1,4 @@
-package com.anandbagmar.se.learn;
+package com.anandbagmar.framework.learn.app;
 
 public class HelloWorld {
     public HelloWorld() {

@@ -1,4 +1,4 @@
-package com.se4.driver;
+package com.anandbagmar.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -25,15 +25,19 @@ public class Driver {
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
                 driver = new ChromeDriver(options);
+                System.setProperty("webdriver.chrome.driver", downloadedDriverPath);
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
+                System.setProperty("webdriver.firefox.driver", downloadedDriverPath);
                 break;
             case "safari":
                 driver = new SafariDriver();
+                System.setProperty("webdriver.safari.driver", downloadedDriverPath);
                 break;
             case "edge":
                 driver = new EdgeDriver();
+                System.setProperty("webdriver.edge.driver", downloadedDriverPath);
                 break;
             default:
                 throw new IllegalArgumentException("Browser " + browser + " is not supported");

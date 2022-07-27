@@ -1,4 +1,4 @@
-package com.anandbagmar.se.learn;
+package com.anandbagmar.framework.learn.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
@@ -37,12 +37,12 @@ public class MyScheduleEx2Test {
         String envBrowser = System.getenv("browser");
         String browser = (null == envBrowser) ? "chrome" : envBrowser;
         System.out.println("Running test with browser - " + browser);
-        switch (browser) {
+        switch(browser) {
             case "chrome":
                 getPathForChromeDriverFromMachine();
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-//                options.addArguments("headless");
+                //                options.addArguments("headless");
                 driver = new ChromeDriver(options);
                 break;
             case "firefox":
@@ -57,9 +57,29 @@ public class MyScheduleEx2Test {
         return driver;
     }
 
+    private String getPathForChromeDriverFromMachine() {
+        WebDriverManager.chromedriver()
+                        .setup();
+        String chromeDriverPath = WebDriverManager.chromedriver()
+                                                  .getDownloadedDriverPath();
+        System.out.println("ChromeDriver path: " + chromeDriverPath);
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        return chromeDriverPath;
+    }
+
+    private String getPathForFirefoxDriverFromMachine() {
+        WebDriverManager.firefoxdriver()
+                        .setup();
+        String firefoxDriverPath = WebDriverManager.firefoxdriver()
+                                                   .getDownloadedDriverPath();
+        System.out.println("FirefoxDriver path: " + firefoxDriverPath);
+        System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
+        return firefoxDriverPath;
+    }
+
     //    @AfterMethod
     public void tearDown() {
-        if (null != driver) {
+        if(null != driver) {
             driver.quit();
         }
     }
@@ -68,25 +88,32 @@ public class MyScheduleEx2Test {
     public void addSessionToMySchedule() {
         driver.get(url);
 
-        driver.findElement(upcomingLocator).click();
-        driver.findElement(conferenceNameLocator).click();
+        driver.findElement(upcomingLocator)
+              .click();
+        driver.findElement(conferenceNameLocator)
+              .click();
 
         takeScreenshot("conference");
 
-        driver.findElement(viewScheduleLocator).click();
+        driver.findElement(viewScheduleLocator)
+              .click();
 
         takeScreenshot("view schedule");
 
-        int initialCount = Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
+        int initialCount = Integer.parseInt(driver.findElement(myScheduleCountLocator)
+                                                  .getText());
         System.out.println("Initial count = " + initialCount);
 
-        driver.findElement(addSessionToMyScheduleLocator).click();
+        driver.findElement(addSessionToMyScheduleLocator)
+              .click();
         takeScreenshot("add session to My Schedule");
 
-        driver.findElement(By.id("cancel_login_model")).click();
+        driver.findElement(By.id("cancel_login_model"))
+              .click();
         takeScreenshot("cancel login");
 
-        int finalCount = Integer.parseInt(driver.findElement(myScheduleCountLocator).getText());
+        int finalCount = Integer.parseInt(driver.findElement(myScheduleCountLocator)
+                                                .getText());
         System.out.println("Final count = " + finalCount);
 
         assertThat(finalCount).isEqualTo(initialCount + 1);
@@ -98,30 +125,13 @@ public class MyScheduleEx2Test {
         System.out.println("Saving screenshot: " + destinationScreenshotFileName);
         try {
             FileUtils.copyFile(screenshotAs, new File(destinationScreenshotFileName));
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
 
-    private String getPathForChromeDriverFromMachine() {
-        WebDriverManager.chromedriver().setup();
-        String chromeDriverPath = WebDriverManager.chromedriver().getDownloadedDriverPath();
-        System.out.println("ChromeDriver path: " + chromeDriverPath);
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        return chromeDriverPath;
-    }
-
-    private String getPathForFirefoxDriverFromMachine() {
-        WebDriverManager.firefoxdriver().setup();
-        String firefoxDriverPath = WebDriverManager.firefoxdriver().getDownloadedDriverPath();
-        System.out.println("FirefoxDriver path: " + firefoxDriverPath);
-        System.setProperty("webdriver.firefox.driver", firefoxDriverPath);
-        return firefoxDriverPath;
-    }
-
     private void explicitlyWaitForElementToBeClickable(WebDriver driver, By locator, int waitForSeconds) {
-        long duration = Duration.ofSeconds(waitForSeconds).getSeconds();
-        new WebDriverWait(driver, duration).until(ExpectedConditions.elementToBeClickable(locator));
+        new WebDriverWait(driver, Duration.ofSeconds(waitForSeconds)).until(ExpectedConditions.elementToBeClickable(locator));
     }
 }

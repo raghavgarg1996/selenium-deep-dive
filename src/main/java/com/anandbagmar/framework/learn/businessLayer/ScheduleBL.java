@@ -1,6 +1,6 @@
-package com.anandbagmar.se.learn.businessLayer;
+package com.anandbagmar.framework.learn.businessLayer;
 
-import com.anandbagmar.se.learn.pages.ListViewSchedulePage;
+import com.anandbagmar.framework.learn.pages.ListViewSchedulePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

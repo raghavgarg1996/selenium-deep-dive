@@ -1,7 +1,7 @@
-package com.anandbagmar.se.learn.businessLayer;
+package com.anandbagmar.framework.learn.businessLayer;
 
-import com.anandbagmar.se.learn.pages.ConferenceLandingPage;
-import com.anandbagmar.se.learn.pages.LandingPage;
+import com.anandbagmar.framework.learn.pages.ConferenceLandingPage;
+import com.anandbagmar.framework.learn.pages.LandingPage;
 
 public class ConferenceBL {
 

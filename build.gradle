@@ -4,8 +4,7 @@ buildscript {
         testNGVersion = '7.6.1'
         seleniumVersion = '4.3.0'
         webdriverManagerVersion = '5.2.1'
-        owaspJavaHtmlSanitizerVersion = '+'
-        gsonVersion = '2.9.0'
+        assertJVersion = '3.23.1'
     }
 }
 
@@ -45,9 +44,8 @@ sourceSets {
 dependencies {
     implementation 'org.testng:testng:' + testNGVersion
     implementation 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
-    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:' + owaspJavaHtmlSanitizerVersion
     implementation 'io.github.bonigarcia:webdrivermanager:' + webdriverManagerVersion
-    implementation 'com.google.code.gson:gson:' + gsonVersion
+    implementation 'org.assertj:assertj-core:' + assertJVersion
 }
 
 project.ext.logDir = "${rootDir}/reports"

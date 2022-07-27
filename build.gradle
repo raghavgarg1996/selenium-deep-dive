@@ -22,25 +22,6 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-    main {
-        java {
-            srcDir file('src/main/java')
-        }
-        resources {
-            srcDirs ("resources")
-        }
-    }
-    test {
-        java {
-            srcDir file('src/test/java')
-        }
-        resources {
-            srcDir file('resources')
-        }
-    }
-}
-
 dependencies {
     implementation 'org.testng:testng:' + testNGVersion
     implementation 'org.seleniumhq.selenium:selenium-java:' + seleniumVersion
@@ -88,8 +69,6 @@ clean.doLast {
     mkdir "${rootDir}/reports"
     println "Created reports directory"
 }
-
-test.dependsOn clean
 
 wrapper {
     gradleVersion = gradleVersionProperty

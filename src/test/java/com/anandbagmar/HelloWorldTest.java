@@ -1,4 +1,4 @@
-package com.anandbagmar.se.learn;
+package com.anandbagmar;
 
 import org.testng.annotations.Test;
 

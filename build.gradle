@@ -43,7 +43,7 @@ test {
         reports.junitXml.required = true
         reports.junitXml.destination(file("${project.logDir}/junit"))
         testLogging {
-            events "started", "passed", "skipped", "failed"
+            events "PASSED", "SKIPPED", "FAILED", "STANDARD_OUT", "STANDARD_ERROR"
             // show standard out and standard error of the test JVM(s) on the console
             showStandardStreams = true
             // show full exception trace
@@ -51,6 +51,15 @@ test {
             showStackTraces = true
             showCauses = true
             showExceptions = true
+        }
+
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
+                def startItem = '|  ', endItem = '  |'
+                def repeatLength = startItem.length() + output.length() + endItem.length()
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+            }
         }
     }
 }

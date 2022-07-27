@@ -17,6 +17,7 @@ public class RelativeLocatorsTest {
     @BeforeMethod
     public void setup() {
         driver = new Driver().createChromeDriver();
+        driver.get("https://automationbookstore.dev/");
     }
 
     @AfterMethod
@@ -25,16 +26,62 @@ public class RelativeLocatorsTest {
     }
 
     @Test
-    public void beRelativeLocatorsTest() {
-        driver.get("https://automationbookstore.dev/");
+    public void relativeLocatorToLeftTest() {
         By idLocator = RelativeLocator.with(By.tagName("li"))
-                                      .toLeftOf(By.id("pid6"));
+                .toLeftOf(By.id("pid6"));
 
         String id = driver.findElement(idLocator)
                           .getText();
         System.out.println("Found book: \n" + id);
+
         assertThat(id).as("Incorrect book is found")
                 .contains("Java For Testers");
+
+        Sleep.forSeconds(2);
+    }
+
+    @Test
+    public void relativeLocatorBelowTest(){
+        By idLocator = RelativeLocator.with(By.tagName("li"))
+                .below(By.id("pid1"));
+
+        String id = driver.findElement(idLocator)
+                .getText();
+        System.out.println("Found book: \n" + id);
+
+        assertThat(id).as("Incorrect book is found")
+                .contains("Java For Testers");
+
+        Sleep.forSeconds(2);
+    }
+
+    @Test
+    public void relativeLocatorToRightTest(){
+        By idLocator = RelativeLocator.with(By.tagName("li"))
+                .toRightOf(By.id("pid7"));
+
+        String id = driver.findElement(idLocator)
+                .getText();
+        System.out.println("Found book: \n" + id);
+
+        assertThat(id).as("Incorrect book is found")
+                .contains("BDD");
+
+        Sleep.forSeconds(2);
+    }
+
+    @Test
+    public void relativeLocatorAboveTest(){
+        By idLocator = RelativeLocator.with(By.tagName("li"))
+                .above(By.id("pid8"));
+
+        String id = driver.findElement(idLocator)
+                .getText();
+        System.out.println("Found book: \n" + id);
+
+        assertThat(id).as("Incorrect book is found")
+                .contains("Google");
+
         Sleep.forSeconds(2);
     }
 }

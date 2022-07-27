@@ -25,7 +25,7 @@ public class RelativeLocatorsTest {
     }
 
     @Test
-    public void byNameTest() {
+    public void beRelativeLocatorsTest() {
         driver.get("https://automationbookstore.dev/");
         By idLocator = RelativeLocator.with(By.tagName("li"))
                                       .toLeftOf(By.id("pid6"));

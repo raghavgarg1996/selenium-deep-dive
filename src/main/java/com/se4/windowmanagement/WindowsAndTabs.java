@@ -1,4 +1,4 @@
-package com.se4.module8;
+package com.se4.windowmanagement;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

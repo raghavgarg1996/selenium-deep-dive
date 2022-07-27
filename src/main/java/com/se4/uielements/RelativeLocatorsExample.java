@@ -1,4 +1,4 @@
-package com.se4.module6;
+package com.se4.uielements;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

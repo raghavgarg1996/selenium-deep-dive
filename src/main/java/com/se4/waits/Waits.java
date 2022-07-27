@@ -1,4 +1,4 @@
-package com.se4.module11;
+package com.se4.waits;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

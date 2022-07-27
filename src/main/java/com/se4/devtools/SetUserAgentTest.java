@@ -19,7 +19,7 @@ public class SetUserAgentTest {
 
     @BeforeMethod
     void setup() {
-        driver = (ChromeDriver) new Driver().createDriver("chrome");
+        driver = new Driver().createChromeDriver();
         chromeDevTools = driver.getDevTools();
         chromeDevTools.createSession();
     }

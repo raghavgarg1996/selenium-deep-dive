@@ -13,7 +13,7 @@ public class ExecuteJavascriptTest {
 
     @BeforeTest
     public void setup() {
-        driver = new Driver().createDriver("chrome");
+        driver = new Driver().createChromeDriver();
     }
 
     @AfterTest
@@ -24,9 +24,9 @@ public class ExecuteJavascriptTest {
     @Test
     public void javascriptTest() {
         driver.get("https://www.amazon.in/");
-        Sleep.forSec(2);
+        Sleep.forSeconds(2);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("scrollBy(0, 2500)");
-        Sleep.forSec(2);
+        Sleep.forSeconds(2);
     }
 }

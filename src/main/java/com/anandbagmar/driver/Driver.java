@@ -13,6 +13,22 @@ public class Driver {
     private String downloadedDriverPath;
     private WebDriver driver;
 
+    public ChromeDriver createChromeDriver() {
+        return (ChromeDriver) createDriver("chrome");
+    }
+
+    public FirefoxDriver createFirefoxDriver() {
+        return (FirefoxDriver) createDriver("chrome");
+    }
+
+    public SafariDriver createSafariDriver() {
+        return (SafariDriver) createDriver("safari");
+    }
+
+    public EdgeDriver createEdgeDriver() {
+        return (EdgeDriver) createDriver("edge");
+    }
+
     public WebDriver createDriver(String browser) {
         WebDriverManager webDriverManager = WebDriverManager.getInstance(browser);
         webDriverManager.setup();

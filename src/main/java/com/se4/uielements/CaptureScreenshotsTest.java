@@ -3,8 +3,8 @@ package com.se4.uielements;
 import com.anandbagmar.driver.Driver;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -17,13 +17,13 @@ public class CaptureScreenshotsTest {
     final static String PROJECT_PATH = System.getProperty("user.dir");
     private final String SCREENSHOT_DIR = PROJECT_PATH + "/build/screenshots/";
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         driver = new Driver().createChromeDriver();
         driver.get("https://www.google.com");
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }

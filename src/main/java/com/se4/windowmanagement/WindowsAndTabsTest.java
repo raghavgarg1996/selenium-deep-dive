@@ -3,8 +3,8 @@ package com.se4.windowmanagement;
 import com.anandbagmar.driver.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Iterator;
@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WindowsAndTabsTest {
     WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         driver = new Driver().createChromeDriver();
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }

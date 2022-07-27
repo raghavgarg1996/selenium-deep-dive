@@ -7,8 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +22,7 @@ public class BrowserDriverTest {
     private String downloadedDriverVersion;
     private String downloadedDriverPath;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         WebDriverManager webDriverManager = WebDriverManager.getInstance(browser);
         webDriverManager.setup();
@@ -50,7 +50,7 @@ public class BrowserDriverTest {
         }
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }

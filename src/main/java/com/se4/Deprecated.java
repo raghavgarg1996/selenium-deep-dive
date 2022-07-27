@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class Deprecated {
     WebDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();

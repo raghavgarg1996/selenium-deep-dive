@@ -14,6 +14,7 @@ Code snippets used in the Selenium Deep Dive workshop
 
 ```
     gradlew.bat clean test
+    .\gradlew.bat clean test
 ```
 
 ### Mac OS / Linux
